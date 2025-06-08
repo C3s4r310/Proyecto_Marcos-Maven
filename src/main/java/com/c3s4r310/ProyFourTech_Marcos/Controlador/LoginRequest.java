@@ -1,4 +1,4 @@
-package com.integrador.spring.app.Controlador;
+package com.c3s4r310.ProyFourTech_Marcos;
 
 // Importaciones de Lombok para reducir la escritura de código repetitivo
 import lombok.AllArgsConstructor;
