@@ -1,0 +1,157 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+/* ESTILO PARA EL HEADER CON EL LOGO Y EL SLOGAN */
+header {
+    background-color: #f7f7f7;
+    height: 20vh;
+}
+
+.logo {
+    width: 30%;
+}
+.logo img{
+    width:200px;
+    height:200px;
+}
+.slogan {
+    width: 40%;
+}
+
+.buscar {
+    width: 30%;
+}
+
+.explo{
+    margin-top: 80px;
+}
+.explobajo{
+    margin-bottom: 40px;
+}
+iframe{
+    width: 100%;
+}
+.carrusel {
+    height: 400px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.carrusel_imagen {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.carrusel_imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carrusel_imagen.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+
+.producto {
+    transition: transform 0.3s ease;
+    /* Añade una transición suave */
+}
+
+.producto:hover {
+    transform: scale(0.9);
+    /* Reduce el tamaño a un 80% */
+}
+
+.producto img {
+    object-fit: contain;
+}
+
+/* ESTILO PARA LA CAJA DE AVISO */
+.aviso {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #dcdcdc;
+    padding: 30px 20px;
+    height: 20%;
+}
+
+.feature {
+    text-align: center;
+    max-width: 300px;
+}
+
+.feature img {
+    max-width: 80px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.feature h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.feature p {
+    font-size: 14px;
+    color: #666;
+}
+
+/* ESTILOS DEL FOOTER*/
+footer {
+    height: 13vh;
+}
+
+.redes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.social {
+    margin-left: 30px;
+}
+
+/* ESTILO PARA IR ARRIBA */
+.ir-arriba {
+    display: none;
+    padding: 20px;
+    background: #239cbb;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+@media (max-width: 410px) {
+    .logo {
+        width: 20%;
+    }
+    .logo img{
+        width:150px;
+        height:auto;
+    }
+    .slogan{
+        font-size: 0.7rem;
+    }
+    
+    .numeros{
+        margin-top: 40px;
+    }
+}
