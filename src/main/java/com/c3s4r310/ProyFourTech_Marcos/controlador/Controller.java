@@ -9,7 +9,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.c3s4r310.ProyFourTech_Marcos.modelo.Usuario;
 import com.c3s4r310.ProyFourTech_Marcos.repositorio.Repository;
 
-
 @org.springframework.stereotype.Controller
 
 public class Controller {
