@@ -24,14 +24,14 @@
       class="d-flex p-2 text-center py-4 justify-content-around align-items-center"
     >
       <div class="logo">
-        <img src="img/logo.jpeg" alt="" width="200px" height="200px" />
+        <img src="img/logo.jpeg" alt=""  />
       </div>
       <div class="slogan">
         <h1>Tienda Fourtech</h1>
         <p>Tenemos lo necesario para ti.</p>
       </div>
       
-        <nav class="navbar bg-body-tertiary d-none d-lg-block">
+        <nav class="buscar navbar bg-body-tertiary d-none d-lg-block">
           <div class="container-fluid mb-3 row">
             <form class="d-flex" role="search">
               <input
@@ -69,7 +69,7 @@
           class="collapse navbar-collapse justify-content-center text-center"
           id="navbarTogglerDemo01"
         >
-          <ul class="navbar-nav mb-2 mb-lg-0">
+          <ul class="navbar-nav mb-2 mb-lg-0 gap-5">
             <li class="nav-item">
               <a class="nav-link active"  th:href="@{/}">Inicio</a>
             </li>
@@ -85,6 +85,9 @@
               <a class="nav-link" th:href="@{/accesorios}"
                 >Accesorios</a
               >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/registro">Regístrate</a>
             </li>
           </ul>
           <nav class="navbar bg-body-tertiary d-block d-lg-none">

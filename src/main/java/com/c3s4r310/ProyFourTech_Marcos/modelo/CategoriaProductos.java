@@ -1,4 +1,4 @@
-package com.c3s4r310.ProyFourTech_Marcos.Models;
+package com.c3s4r310.ProyFourTech_Marcos.modelo;
 
 import java.util.List;
 

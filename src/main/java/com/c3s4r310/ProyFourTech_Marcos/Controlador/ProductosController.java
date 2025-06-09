@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-
-import com.c3s4r310.ProyFourTech_Marcos.Models.Productos;
 import com.c3s4r310.ProyFourTech_Marcos.Services.ProductosServices;
+import com.c3s4r310.ProyFourTech_Marcos.modelo.Productos;
+
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 //@RequestMapping("/productos")
 public class ProductosController {
 
-    @Autowired
+    /*@Autowired
     private ProductosServices services_pro;
     @GetMapping("/")
     public String index() {
@@ -43,6 +43,6 @@ public class ProductosController {
     @GetMapping("/accesorios")
     public String listarAccesorios() {
         return "accesorios";
-    }
+    }*/
 
 }

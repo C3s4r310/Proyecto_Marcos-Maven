@@ -7,8 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.c3s4r310.ProyFourTech_Marcos.Models.Productos;
-import com.c3s4r310.ProyFourTech_Marcos.Repository.ProductosRepo;
+import com.c3s4r310.ProyFourTech_Marcos.modelo.Productos;
+import com.c3s4r310.ProyFourTech_Marcos.repositorio.ProductosRepo;
 
 @Service
 public class ProductosServices {
