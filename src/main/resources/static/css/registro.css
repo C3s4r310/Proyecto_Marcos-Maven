@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* ESTILO PARA EL HEADER CON EL LOGO Y EL SLOGAN */
+header {
+    background-color: #f7f7f7;
+    height: 20vh;
+}
+
+.logo {
+    width: 30%;
+}
+.logo img{
+    width:200px;
+    height:200px;
+}
+.slogan {
+    width: 40%;
+}
+
+.buscar {
+    width: 30%;
+}
+
+/*2do*/
+.contenido {
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*background-color: skyblue;*/
+}
+
+.alert{
+  width: 50%;
+  height: 10%;
+  margin-top: 50px;
+}
+
+.datos {
+  width: 50%;
+  height: 90%;
+  margin: 20px;
+  font-size: small;
+  /*background-color: blue;*/
+}
+
+.titulodatos {
+  font-size: large;
+  /*background-color: yellow;*/
+}
+
+.serv {
+  color: red;
+}
+
+.titulos {
+  color: red;
+  font-weight: bold;
+}
+
+/* ESTILOS DEL FOOTER*/
+footer {
+    height: 13vh;
+}
+
+.redes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.social {
+    margin-left: 30px;
+}
+
+/* ESTILO PARA IR ARRIBA */
+.ir-arriba {
+    display: none;
+    padding: 20px;
+    background: #239cbb;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+@media (max-width: 410px) {
+    .logo {
+        width: 20%;
+    }
+    .logo img{
+        width:150px;
+        height:auto;
+    }
+    .slogan{
+        font-size: 0.7rem;
+    }
+    
+    .numeros{
+        margin-top: 40px;
+    }
+}
+
+/* Estilo para el validator */
+.help-block {
+  color: red;
+}
+.form-group.has-error .form-control-label {
+  color: red;
+}
+.form-group.has-error .form-control {
+  border: 1px solid red;
+  box-shadow: 0 0 0 0.2rem rgba(250, 16, 0, 0.18);
+}
+
+
