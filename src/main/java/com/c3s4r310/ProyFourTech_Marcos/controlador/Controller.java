@@ -1,3 +1,4 @@
+
 package com.c3s4r310.ProyFourTech_Marcos.Controlador;
 
 import java.util.List;
@@ -12,14 +13,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.c3s4r310.ProyFourTech_Marcos.Services.ProductosServices;
 import com.c3s4r310.ProyFourTech_Marcos.modelo.Productos;
 import com.c3s4r310.ProyFourTech_Marcos.modelo.Usuario;
-import com.c3s4r310.ProyFourTech_Marcos.repositorio.Repository;
+import com.c3s4r310.ProyFourTech_Marcos.repositorio.Repository; // Importa tu repositorio
 
 @org.springframework.stereotype.Controller
-
 public class Controller {
 
     @Autowired
-    private Repository usuarioRepository;
+    private Repository usuarioRepository; // Renombrado a usuarioRepository para claridad
 
     @Autowired
     private ProductosServices services_pro;
@@ -54,6 +54,17 @@ public class Controller {
     public String mostrarRegistro(Model model) {
         model.addAttribute("usuario", new Usuario());
         return "registro";
+    }
+
+    @GetMapping("/usuarios_registrados")
+    public String mostrarUsuariosRegistrados(Model model) { // ¡Aquí el cambio! Necesitas Model
+        // Obtiene todos los usuarios de la base de datos
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        
+        // Agrega la lista de usuarios al modelo para que Thymeleaf la use
+        model.addAttribute("usuarios", usuarios); 
+        
+        return "usuarios_registrados.html"; // Nombre de la plantilla
     }
 
     @PostMapping("/registrarUsuario")

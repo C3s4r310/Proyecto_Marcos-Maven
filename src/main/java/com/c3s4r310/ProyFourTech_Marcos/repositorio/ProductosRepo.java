@@ -1,5 +1,6 @@
 package com.c3s4r310.ProyFourTech_Marcos.repositorio;
 
+
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,5 +11,4 @@ import com.c3s4r310.ProyFourTech_Marcos.modelo.Productos;
 @Repository
 public interface ProductosRepo extends JpaRepository<Productos, Long>{
     List<Productos> findByCategoria_Id(Long id);
-
 }

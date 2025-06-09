@@ -16,17 +16,8 @@ public class ProductosServices {
     @Autowired
     private ProductosRepo repo_productos;
 
-
     public List<Productos> listarPorCategoria(Long categoriaId) {
         return repo_productos.findByCategoria_Id(categoriaId);
     }
 
-    public Productos registarProductos(Long id, String imagen, String nombre, String descripcion,
-            BigDecimal precio, Integer cantidad) throws IOException {
-        Productos nuevo = new Productos();
-        nuevo.setNombre(nombre);
-        nuevo.setImagen(imagen);
-        nuevo.setPrecio(precio);
-        return repo_productos.save(nuevo);
-    }
 }
