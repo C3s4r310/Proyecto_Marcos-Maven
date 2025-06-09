@@ -6,79 +6,37 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor; // Añadir esta importación
+import lombok.Data;         // Añadir esta importación
+import lombok.NoArgsConstructor;  // Añadir esta importación
 
+@Data // Genera getters, setters, toString, equals y hashCode con Lombok
+@NoArgsConstructor // Genera un constructor sin argumentos
+@AllArgsConstructor // Genera un constructor con todos los argumentos
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id_usuario;
+    private Integer id_usuario; // Usamos Integer, lo cual es válido para MySQL INT
 
+    @Column(nullable = false, length = 50) // Añadir validaciones de columna para nombres
     private String nombres;
+    
+    @Column(nullable = false, length = 50) // Añadir validaciones de columna para apellidos
     private String apellidos;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false, length = 100) // Asegurar que email no sea nulo y tenga longitud
     private String email;
 
+    @Column(nullable = false, length = 255) // Asegurar que contra no sea nula
     private String contra;
+    
+    @Column(length = 9) // Longitud para teléfono
     private String telefono;
+    
+    @Column(length = 255) // Longitud para dirección
     private String direccion;
 
-    // Getters y setters
-    public Integer getId_usuario() {
-        return id_usuario;
-    }
-
-    public void setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
-    }
-
-    public String getNombres() {
-        return nombres;
-    }
-
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getContra() {
-        return contra;
-    }
-
-    public void setContra(String contra) {
-        this.contra = contra;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
 }
