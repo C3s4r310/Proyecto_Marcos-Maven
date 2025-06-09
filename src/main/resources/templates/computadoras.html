@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -71,18 +71,18 @@
         >
           <ul class="navbar-nav mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active"  href="index.html">Inicio</a>
+              <a class="nav-link active"  th:href="@{/}">Inicio</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="computadoras.html">Computadoras</a>
+              <a class="nav-link" aria-current="page" th:href="@{/computadoras}">Computadoras</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="laptops.html"
+              <a class="nav-link" th:href="@{/laptops}"
                 >Laptops</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="accesorios.html"
+              <a class="nav-link" th:href="@{/accesorios}"
                 >Accesorios</a
               >
             </li>
@@ -107,118 +107,16 @@
     <main class="container-fluid mt-5">
       <article class="row text-center justify-content-center">
         <h2>INTEL</h2>
-        <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
+        <section th:each="productos : ${productos}" class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
           <img
             class="img-fluid mx-auto"
-            src="https://oechsle.vteximg.com.br/arquivos/ids/20643211/image-6912a805522b44b1bc23be70add7cef8.jpg?v=638768149568000000"
+            th:src="${productos.imagen}"
             alt=""
           />
-          <p class="fw-bold">
-            PC Intel Core i7 3.4 Ghz RAM 16GB DISCO 1TB+SSD 480GB Monitor 24 LG
+          <p class="fw-bold" th:text="${productos.nombre}">
+            
           </p>
-          <p><mark>S/ 1669.00</mark></p>
-          <button class="btn btn-secondary p-3 fw-bold">
-            Añadir al carrito
-          </button>
-        </section>
-        <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-          <img
-            class="img-fluid mx-auto"
-            src="https://oechsle.vteximg.com.br/arquivos/ids/20643200/image-f1ac5d77918e40cbad1e3abb5a04ca10.jpg?v=638768149501570000"
-            alt=""
-          />
-          <p class="fw-bold">
-            Pc Intel Core I7-8TH Monitor 24 LG Ram 16GB Disco 1TB+Disco SSD
-            480GB Case 350W
-          </p>
-          <p><mark>S/ 1 919.00</mark></p>
-          <button class="btn btn-secondary p-3 fw-bold">
-            Añadir al carrito
-          </button>
-        </section>
-        <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-          <img
-            class="img-fluid mx-auto"
-            src="https://plazavea.vteximg.com.br/arquivos/ids/30762467/image-55ac642431fe4ed69a704026e46feda5.jpg?v=638767943610270000"
-            alt=""
-          />
-          <p class="fw-bold">
-            PC Intel Core i7 RAM 16GB Disco Duro 1TB+SSD 480GB Monitor 27 FHD
-          </p>
-          <p><mark>S/ 1 739.00</mark></p>
-          <button class="btn btn-secondary p-3 fw-bold">
-            Añadir al carrito
-          </button>
-        </section>
-        <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-          <img
-            class="img-fluid mx-auto"
-            src="https://plazavea.vteximg.com.br/arquivos/ids/28252211/imageUrl_1.jpg?v=638343179687430000"
-            alt=""
-          />
-          <p class="fw-bold">
-            Pc intel Core i7 3.2ghz Ram 16GB Disco 1TB Monitor 24 Full HD Case
-            350W
-          </p>
-          <p><mark>S/ 1 569.00</mark></p>
-          <button class="btn btn-secondary p-3 fw-bold">
-            Añadir al carrito
-          </button>
-        </section>
-
-        <h2>AMD</h2>
-        <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-          <img
-            class="img-fluid mx-auto"
-            src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/134991457_01/w=1500,h=1500,fit=pad"
-            alt=""
-          />
-          <p class="fw-bold">
-            PC RYZEN 5 5600GT RAM 16GB SSD 512GB MONITOR 24" FULL HD
-          </p>
-          <p><mark>S/ 1 929.00</mark></p>
-          <button class="btn btn-secondary p-3 fw-bold">
-            Añadir al carrito
-          </button>
-        </section>
-        <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-          <img
-            class="img-fluid mx-auto"
-            src="https://www.lacuracao.pe/media/catalog/product/s/g/sgmp45.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700"
-            alt=""
-          />
-          <p class="fw-bold">
-            PC Desktop Gamer AMD Ryzen 7 5700G 16GB 1TB+480GB
-          </p>
-          <p><mark>S/ 1 869.00</mark></p>
-          <button class="btn btn-secondary p-3 fw-bold">
-            Añadir al carrito
-          </button>
-        </section>
-        <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-          <img
-            class="img-fluid"
-            src="https://http2.mlstatic.com/D_NQ_NP_878023-MLU76320041986_052024-O.webp"
-            alt=""
-          />
-          <p class="fw-bold mx-auto">
-            Pc Gamer Ryzen 5 5600g, 16gb Ram, Ssd 500gb, 24 PuLG
-          </p>
-          <p><mark>S/ 1 866.00</mark></p>
-          <button class="btn btn-secondary p-3 fw-bold">
-            Añadir al carrito
-          </button>
-        </section>
-        <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-          <img
-            class="img-fluid"
-            src="https://www.lacuracao.pe/media/catalog/product/s/g/sgmp50.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700"
-            alt=""
-          />
-          <p class="fw-bold mx-auto">
-            PC Gamer AMD Ryzen 5 5500 16GB 1TB+480GB Video GT 730 4GB
-          </p>
-          <p><mark>S/ 2 029.00</mark></p>
+          <p>S/<mark th:text="${productos.precio}"></mark></p>
           <button class="btn btn-secondary p-3 fw-bold">
             Añadir al carrito
           </button>
