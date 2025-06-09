@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tienda FourTech</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/laptops.css" rel="stylesheet">
-  <!-- Para agregar ícono del logo a la página -->
-  <link rel="icon" href="img/logo.jpeg" type="image/png">
-</head>
-<body> 
-  <span class="ir-arriba icon-arrow-up2"><i class="fa-solid fa-arrow-up"></i></span>      
-      <!--PARA DE LA CABECERA: LOGO Y MENSAJE -->
-      <header
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tienda FourTech</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="css/laptops.css" rel="stylesheet" />
+    <!-- Para agregar ícono del logo a la página -->
+    <link rel="icon" href="img/logo.jpeg" type="image/png" />
+  </head>
+  <body>
+    <span class="ir-arriba icon-arrow-up2"
+      ><i class="fa-solid fa-arrow-up"></i
+    ></span>
+    <!--PARA DE LA CABECERA: LOGO Y MENSAJE -->
+    <header
       class="d-flex p-2 text-center py-4 justify-content-around align-items-center"
     >
       <div class="logo">
@@ -99,149 +104,114 @@
       </div>
     </nav>
 
-  <!-- Sección de productos -->
-  <main class="container-fluid mt-5">
-    <article class="row text-center justify-content-center">
-      <h2>INTEL</h2>
+    <!-- Sección de productos -->
+    <main class="container-fluid mt-5">
+      <article class="row text-center justify-content-center">
+        <h2>INTEL</h2>
+        <section th:each="productos : ${productos}" class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
+          <img
+            class="img-fluid mx-auto"
+            th:src="${productos.imagen}"
+            alt=""
+          />
+          <p class="fw-bold" th:text="${productos.nombre}">
+            
+          </p>
+          <p>S/<mark th:text="${productos.precio}"></mark></p>
+          <button class="btn btn-secondary p-3 fw-bold">
+            Añadir al carrito
+          </button>
+        </section>
+        
+      </article>
+    </main>
 
-      <!-- Laptop Intel 1 -->
-      <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-        <img class="img-fluid mx-auto" src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/136704677_051/w=1500,h=1500,fit=pad" alt="Laptop Intel Core i7 12va Gen" />
-        <p class="fw-bold">Laptop Intel Core i7 12va Gen 16GB RAM 1TB SSD 15.6” FHD</p>
-        <p><mark>S/ 1669.00</mark></p>
-        <button class="btn btn-secondary p-3 fw-bold">Añadir al carrito</button>
-      </section>
-
-      <!-- Laptop Intel 2 -->
-      <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-        <img class="img-fluid mx-auto" src="https://totalinformatica.com.pe/uploads/5-10-2022/V5KH8-3.jpg" alt="Laptop Intel Core i7 11th Gen" />
-        <p class="fw-bold">Laptop Intel Core i7 11th Gen 16GB RAM 512GB SSD Pantalla 14”</p>
-        <p><mark>S/ 1 919.00</mark></p>
-        <button class="btn btn-secondary p-3 fw-bold">Añadir al carrito</button>
-      </section>
-
-      <!-- Laptop Intel 3 -->
-      <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-        <img class="img-fluid mx-auto" src="https://www.impacto.com.pe/storage/products/lg/17382708439668.webp" alt="Laptop Intel Core i7 13va Gen" />
-        <p class="fw-bold">Laptop Intel Core i7 13va Gen RAM 16GB SSD 1TB Pantalla 16”</p>
-        <p><mark>S/ 1 739.00</mark></p>
-        <button class="btn btn-secondary p-3 fw-bold">Añadir al carrito</button>
-      </section>
-
-      <!-- Laptop Intel 4 -->
-      <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-        <img class="img-fluid mx-auto" src="https://home.ripley.com.pe/Attachment/WOP_5/2004320775615/2004320775615_2.jpg" alt="Laptop Intel Core i7" />
-        <p class="fw-bold">Laptop Intel Core i7 RAM 16GB SSD 512GB Pantalla 15.6 Full HD</p>
-        <p><mark>S/ 1 569.00</mark></p>
-        <button class="btn btn-secondary p-3 fw-bold">Añadir al carrito</button>
-      </section>
-
-      <h2>AMD</h2>
-
-      <!-- Laptop AMD 1 -->
-      <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-        <img class="img-fluid mx-auto" src="https://home.ripley.com.pe/Attachment/WOP_5/2004293401498/2004293401498_2.jpg" alt="Laptop Ryzen 5 5600U" />
-        <p class="fw-bold">Laptop Ryzen 5 5600U 16GB RAM 512GB SSD 15.6” FHD</p>
-        <p><mark>S/ 1 929.00</mark></p>
-        <button class="btn btn-secondary p-3 fw-bold">Añadir al carrito</button>
-      </section>
-
-      <!-- Laptop AMD 2 -->
-      <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-        <img class="img-fluid mx-auto" src="https://imagedelivery.net/4fYuQyy-r8_rpBpcY7lH_A/falabellaPE/127913780_01/w=1500,h=1500,fit=pad" alt="Laptop Ryzen 7 5700U" />
-        <p class="fw-bold">Laptop Ryzen 7 5700U 16GB RAM 1TB SSD Pantalla 15.6”</p>
-        <p><mark>S/ 1 869.00</mark></p>
-        <button class="btn btn-secondary p-3 fw-bold">Añadir al carrito</button>
-      </section>
-
-      <!-- Laptop AMD 3 -->
-      <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-        <img class="img-fluid mx-auto" src="https://home.ripley.com.pe/Attachment/WOP_5/2004293401436/2004293401436_2.jpg" alt="Laptop Gamer Ryzen 5 5600H" />
-        <p class="fw-bold mx-auto">Laptop Gamer Ryzen 5 5600H 16GB RAM SSD 512GB 15.6”</p>
-        <p><mark>S/ 1 866.00</mark></p>
-        <button class="btn btn-secondary p-3 fw-bold">Añadir al carrito</button>
-      </section>
-
-      <!-- Laptop AMD 4 -->
-      <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-        <img class="img-fluid mx-auto" src="https://m.media-amazon.com/images/I/71pNW1Epb+L._AC_SL1500_.jpg" alt="Laptop Ryzen 5 5500U" />
-        <p class="fw-bold mx-auto">Laptop Ryzen 5 5500U 16GB RAM SSD 1TB Pantalla 17”</p>
-        <p><mark>S/ 2 029.00</mark></p>
-        <button class="btn btn-secondary p-3 fw-bold">Añadir al carrito</button>
-      </section>
-
-      <!-- Laptop Dell 1 -->
-      <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-        <img class="img-fluid mx-auto" src="https://rymportatiles.com.pe/cdn/shop/files/8477.3.png?v=1731015128" alt="Laptop Dell Inspiron 14" />
-        <p class="fw-bold">Laptop Dell Inspiron 14, Core i5 12va Gen, 8GB RAM, 512GB SSD</p>
-        <p><mark>S/ 1 469.00</mark></p>
-        <button class="btn btn-secondary p-3 fw-bold">Añadir al carrito</button>
-      </section>
-
-      <!-- Laptop Lenovo 1 -->
-      <section class="columna col-sm-10 col-md-5 col-lg-6 border p-3 m-2">
-        <img class="img-fluid mx-auto" src="https://home.ripley.com.pe/Attachment/WOP_5/2004296252226/2004296252226_2.jpg" alt="Laptop Lenovo IdeaPad 5i" />
-        <p class="fw-bold">Laptop Lenovo IdeaPad 5i, Core i5 11va Gen, 8GB RAM, 512GB SSD</p>
-        <p><mark>S/ 1 429.00</mark></p>
-        <button class="btn btn-secondary p-3 fw-bold">Añadir al carrito</button>
-      </section>
-
-    </article>
-  </main>
-
-  <!-- Modales de los productos -->
-  <!-- Modal HP Pavilion 15 -->
-  <div class="modal fade" id="modalHP" tabindex="-1" aria-labelledby="modalHPLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modalHPLabel">HP Pavilion 15</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-        </div>
-        <div class="modal-body">
-          <img src="https://via.placeholder.com/200x140?text=HP" class="img-fluid" alt="HP Pavilion 15">
-          <p><strong>Características:</strong> Intel Core i5 | 8GB RAM | 512GB SSD | 15.6”</p>
-          <p><strong>Precio:</strong> S/ 2,799.00</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Comprar Ahora</button>
+    <!-- Modales de los productos -->
+    <!-- Modal HP Pavilion 15 -->
+    <div
+      class="modal fade"
+      id="modalHP"
+      tabindex="-1"
+      aria-labelledby="modalHPLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalHPLabel">HP Pavilion 15</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <img
+              src="https://via.placeholder.com/200x140?text=HP"
+              class="img-fluid"
+              alt="HP Pavilion 15"
+            />
+            <p>
+              <strong>Características:</strong> Intel Core i5 | 8GB RAM | 512GB
+              SSD | 15.6”
+            </p>
+            <p><strong>Precio:</strong> S/ 2,799.00</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <button type="button" class="btn btn-primary">Comprar Ahora</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2025 Tienda FourTech. Todos los derechos reservados.</p>
-    <p><a href="https://www.facebook.com" class="text-white">Facebook</a> | <a href="https://www.instagram.com" class="text-white">Instagram</a> | <a href="https://www.twitter.com" class="text-white">X</a></p>
-  </footer>
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+      <p>&copy; 2025 Tienda FourTech. Todos los derechos reservados.</p>
+      <p>
+        <a href="https://www.facebook.com" class="text-white">Facebook</a> |
+        <a href="https://www.instagram.com" class="text-white">Instagram</a> |
+        <a href="https://www.twitter.com" class="text-white">X</a>
+      </p>
+    </footer>
 
-  <!-- Scripts necesarios para Bootstrap -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-  <!-- Para algunas funciones -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <!-- Íconos -->
-  <script src="https://kit.fontawesome.com/1da5200486.js" crossorigin="anonymous"></script>
+    <!-- Scripts necesarios para Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <!-- Para algunas funciones -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Íconos -->
+    <script
+      src="https://kit.fontawesome.com/1da5200486.js"
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- Script para ir arriba -->
-  <script>
-    $(document).ready(function(){
-      $('.ir-arriba').click(function(){
-          $('body, html').animate({
-              scrollTop: '0px'
-          }, 300);
-      });
-      $(window).scroll(function(){
-          if( $(this).scrollTop() > 0 ){
-              $('.ir-arriba').slideDown(300);
+    <!-- Script para ir arriba -->
+    <script>
+      $(document).ready(function () {
+        $(".ir-arriba").click(function () {
+          $("body, html").animate(
+            {
+              scrollTop: "0px",
+            },
+            300
+          );
+        });
+        $(window).scroll(function () {
+          if ($(this).scrollTop() > 0) {
+            $(".ir-arriba").slideDown(300);
           } else {
-              $('.ir-arriba').slideUp(300);
+            $(".ir-arriba").slideUp(300);
           }
+        });
       });
-    });
-  </script>
-
-</body>
+    </script>
+  </body>
 </html>

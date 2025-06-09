@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -79,6 +79,7 @@
               <a class="nav-link active" aria-current="page" href="#">Inicio</a>
             </li>
             <li class="nav-item">
+<<<<<<< HEAD
               <a class="nav-link" href="/pcs">Computadoras</a>
             </li>
             <li class="nav-item">
@@ -89,6 +90,15 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/registro">Regístrate</a>
+=======
+              <a class="nav-link" th:href="@{/computadoras}">Computadoras</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/laptops}">Laptops</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{accesorios}">Accesorios</a>
+>>>>>>> rama-cristian
             </li>
           </ul>
           <nav class="navbar bg-body-tertiary d-block d-lg-none">
