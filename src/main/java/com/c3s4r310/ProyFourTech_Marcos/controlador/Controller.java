@@ -1,9 +1,14 @@
 
+<<<<<<< HEAD
 package com.c3s4r310.ProyFourTech_Marcos.Controlador;
+=======
+package com.c3s4r310.ProyFourTech_Marcos.controlador;
+>>>>>>> 3c9c43d (Consolidación: Recuperar versión con style.css + Spring Security + mejoras actuales)
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,6 +28,12 @@ public class Controller {
 
     @Autowired
     private ProductosServices services_pro;
+<<<<<<< HEAD
+=======
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+>>>>>>> 3c9c43d (Consolidación: Recuperar versión con style.css + Spring Security + mejoras actuales)
 
     @GetMapping("/")
     public String mostrarPaginaPrincipal() {
@@ -70,6 +81,11 @@ public class Controller {
     @PostMapping("/registrarUsuario")
     public String registrarUsuario(@ModelAttribute Usuario usuario, RedirectAttributes redirectAttributes) {
 
+<<<<<<< HEAD
+=======
+        // Encriptar la contraseña antes de guardar
+        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+>>>>>>> 3c9c43d (Consolidación: Recuperar versión con style.css + Spring Security + mejoras actuales)
         usuarioRepository.save(usuario);
 
         // Enviar mensaje de éxito al redirigir
@@ -78,4 +94,12 @@ public class Controller {
         return "redirect:/registro"; // redirecciona después del registro
     }
 
+<<<<<<< HEAD
+=======
+    @GetMapping("/login")
+    public String mostrarLogin() {
+        return "login";
+    }
+
+>>>>>>> 3c9c43d (Consolidación: Recuperar versión con style.css + Spring Security + mejoras actuales)
 }

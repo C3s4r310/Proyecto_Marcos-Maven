@@ -38,5 +38,26 @@ public class Usuario {
     
     @Column(length = 255) // Longitud para dirección
     private String direccion;
+<<<<<<< HEAD
+=======
+    
+    // Método para compatibilidad con Spring Security
+    public String getPassword() {
+        return this.contra;
+    }
+    
+    public void setPassword(String password) {
+        this.contra = password;
+    }
+    
+    // Método getter para email (compatibilidad con JPA queries)
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+>>>>>>> 3c9c43d (Consolidación: Recuperar versión con style.css + Spring Security + mejoras actuales)
 
 }
