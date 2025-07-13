@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,19 +23,51 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <span class="ir-arriba icon-arrow-up2"
-      ><i class="fa-solid fa-arrow-up"></i
-    ></span>
+    <span class="ir-arriba">
+      <i class="fa-solid fa-arrow-up"></i>
+    </span>
+    
     <header
       class="d-flex p-2 text-center py-4 justify-content-around align-items-center"
     >
-      <div class="logo">
-        <img src="img/logo.jpeg" alt=""  />
-      </div>
-      <div class="slogan">
-        <h1>Tienda Fourtech</h1>
-        <p>Tenemos lo necesario para ti.</p>
-      </div>      
+        <div class="logo">
+          <img src="img/logo.jpeg" alt="Logo FourTech" />
+        </div>
+        <div class="slogan">
+          <h1>Tienda Fourtech</h1>
+          <p>Tenemos lo necesario para ti.</p>
+        </div>
+        
+        <!-- Sección de autenticación -->
+        <div class="header-actions">
+          <!-- Botones cuando NO está autenticado -->
+          <div sec:authorize="!isAuthenticated()" class="auth-section">
+            <a href="/login" class="btn btn-outline-primary me-2">
+              <i class="fas fa-sign-in-alt"></i>
+              Iniciar Sesión
+            </a>
+            <a href="/registro" class="btn btn-primary">
+              <i class="fas fa-user-plus"></i>
+              Registrarse
+            </a>
+          </div>
+
+          <!-- Menú cuando SÍ está autenticado -->
+          <div sec:authorize="isAuthenticated()" class="user-section">
+            <div class="user-menu d-flex align-items-center">
+              <span class="welcome-text me-3">
+                <i class="fas fa-user-circle me-1"></i>
+                Bienvenido, <strong sec:authentication="name">Usuario</strong>
+              </span>
+              <form th:action="@{/logout}" method="post" class="d-inline">
+                <button type="submit" class="btn btn-outline-danger">
+                  <i class="fas fa-sign-out-alt"></i>
+                  Cerrar Sesión
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
     </header>
 
     <nav
@@ -60,38 +92,22 @@
           id="navbarTogglerDemo01"
         >
           <ul class="navbar-nav mb-2 mb-lg-0 gap-5">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/computadoras}">Computadoras</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/laptops}">Laptops</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{accesorios}">Accesorios</a>
-            <li class="nav-item">
-              <a class="nav-link" href="/registro">Regístrate</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/usuarios_registrados">Usuarios Registrados</a>
-            </li>
-          </ul>
-          <nav class="navbar bg-body-tertiary d-block d-lg-none">
-            <div class="container-fluid mb-3 row">
-              <form class="d-flex" role="search">
-                <input
-                  class="form-control me-2"
-                  type="search"
-                  placeholder="Buscar en nuestro catálogo"
-                  aria-label="Search"
-                />
-                <button class="btn btn-dark" type="submit">Buscar</button>
-              </form>
-            </div>
-          </nav>
-        </div>
+          <li class="nav-item">
+            <a href="/" class="nav-link active">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="/computadoras" class="nav-link">Computadoras</a>
+          </li>
+          <li class="nav-item">
+            <a href="/laptops" class="nav-link">Laptops</a>
+          </li>
+          <li class="nav-item">
+            <a href="/accesorios" class="nav-link">Accesorios</a>
+          </li>
+          <li class="nav-item">
+            <a href="/usuarios" class="nav-link">Usuarios</a>
+          </li>
+        </ul>
       </div>
     </nav>
 
@@ -236,7 +252,7 @@
     </footer>
 
     <!-- Para enlazar el script de nuestro directorio -->
-    <script src="script/script.js"></script>
+    <script src="js/script.js"></script>
     <!-- Íconos -->
     <script
       src="https://kit.fontawesome.com/1da5200486.js"
@@ -275,3 +291,4 @@
     </script>
   </body>
 </html>
+

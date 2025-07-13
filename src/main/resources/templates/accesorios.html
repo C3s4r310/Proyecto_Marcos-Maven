@@ -1,48 +1,77 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda FourTech</title>
-    <link rel="stylesheet" href="css/accesorios.css">
-    <!-- Para agregar ícono del logo a la página -->
-    <link rel="icon" href="img/logo.jpeg" type="image/png">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accesorios - Tienda FourTech</title>
+    <link rel="icon" href="img/logo.jpeg" type="image/png" />
+    
     <!-- Link de Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-</head>
-<body>
-  <span class="ir-arriba icon-arrow-up2"><i class="fa-solid fa-arrow-up"></i></span>      
-      <!--PARA DE LA CABECERA: LOGO Y MENSAJE -->
-      <header
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+      crossorigin="anonymous"
+    />
+    <!-- Animate.css para animaciones -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <span class="ir-arriba">
+      <i class="fa-solid fa-arrow-up"></i>
+    </span>
+    
+    <header
       class="d-flex p-2 text-center py-4 justify-content-around align-items-center"
     >
-      <div class="logo">
-        <img src="img/logo.jpeg" alt=""  />
-      </div>
-      <div class="slogan">
-        <h1>Tienda Fourtech</h1>
-        <p>Tenemos lo necesario para ti.</p>
-      </div>
-      
-        <nav class="buscar navbar bg-body-tertiary d-none d-lg-block">
-          <div class="container-fluid mb-3 row">
-            <form class="d-flex" role="search">
-              <input
-                class="form-control me-2"
-                type="search"
-                placeholder="Buscar en nuestro catálogo"
-                aria-label="Search"
-              />
-              <button class="btn btn-dark" type="submit">Buscar</button>
-            </form>
+        <div class="logo">
+          <img src="img/logo.jpeg" alt="Logo FourTech" />
+        </div>
+        <div class="slogan">
+          <h1>Tienda Fourtech</h1>
+          <p>Tenemos lo necesario para ti.</p>
+        </div>
+
+        <!-- Sección de autenticación -->
+        <div class="header-actions">
+          <!-- Botones cuando NO está autenticado -->
+          <div sec:authorize="!isAuthenticated()" class="auth-section">
+            <a href="/login" class="btn btn-outline-primary me-2">
+              <i class="fas fa-sign-in-alt"></i>
+              Iniciar Sesión
+            </a>
+            <a href="/registro" class="btn btn-primary">
+              <i class="fas fa-user-plus"></i>
+              Registrarse
+            </a>
           </div>
-        </nav>
-      
+
+          <!-- Menú cuando SÍ está autenticado -->
+          <div sec:authorize="isAuthenticated()" class="user-section">
+            <div class="user-menu d-flex align-items-center">
+              <span class="welcome-text me-3">
+                <i class="fas fa-user-circle me-1"></i>
+                Bienvenido, <strong sec:authentication="name">Usuario</strong>
+              </span>
+              <form th:action="@{/logout}" method="post" class="d-inline">
+                <button type="submit" class="btn btn-outline-danger">
+                  <i class="fas fa-sign-out-alt"></i>
+                  Cerrar Sesión
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
     </header>
 
-    <!--PARA EL MENÚ -->
-    <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body"
-      data-bs-theme="dark">
+    <nav
+      class="navbar navbar-expand-lg bg-dark border-bottom border-body"
+      data-bs-theme="dark"
+    >
       <div class="container-fluid justify-content-end">
         <button
           class="navbar-toggler"
@@ -51,281 +80,150 @@
           data-bs-target="#navbarTogglerDemo01"
           aria-controls="navbarTogglerDemo01"
           aria-expanded="false"
-          aria-label="Toggle navigation">
+          aria-label="Toggle navigation"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse justify-content-center text-center"
-          id="navbarTogglerDemo01">
+        <div
+          class="collapse navbar-collapse justify-content-center text-center"
+          id="navbarTogglerDemo01"
+        >
           <ul class="navbar-nav mb-2 mb-lg-0 gap-5">
-            <li class="nav-item">
-              <a class="nav-link active"th:href="@{/}">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/computadoras}">Computadoras</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/laptops}"
-                >Laptops</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link"  aria-current="page"  th:href="@{/accesorios}">Accesorios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/registro">Regístrate</a>
-            </li>
-          </ul>
-          <nav class="navbar bg-body-tertiary d-block d-lg-none">
-            <div class="container-fluid mb-3 row">
-              <form class="d-flex" role="search">
-                <input
-                  class="form-control me-2"
-                  type="search"
-                  placeholder="Buscar en nuestro catálogo"
-                  aria-label="Search"/>
-                <button class="btn btn-dark" type="submit">Buscar</button>
-              </form>
-            </div>
-          </nav>
-        </div>
+          <li class="nav-item">
+            <a href="/" class="nav-link">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a href="/computadoras" class="nav-link">Computadoras</a>
+          </li>
+          <li class="nav-item">
+            <a href="/laptops" class="nav-link">Laptops</a>
+          </li>
+          <li class="nav-item">
+            <a href="/accesorios" class="nav-link active">Accesorios</a>
+          </li>
+          <li class="nav-item">
+            <a href="/usuarios" class="nav-link">Usuarios</a>
+          </li>
+        </ul>
       </div>
     </nav>
 
-  <div>
-    <br>
-    <h1>MOUSE</h1>
-
-    <div class="contenido">
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2022/11/G203-LIGHTSYNC.jpg" alt="MOUSE LOGITECH G203 LIGHTSYNC OPTICAL 8000 DPI">
-        <h3>MOUSE LOGITECH G203 LIGHTSYNC OPTICAL 8000 DPI</h3>
-        <p>Disponible</p>
-        <p>S/ 107</p>
-        <button>Añadir Carrito</button>
-      </div>
-    
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2022/11/g502-mouse-logith.jpg" alt="MOUSE LOGITECH G502 HERO 16000 DPI">
-        <h3>MOUSE LOGITECH G502 HERO 16000 DPI</h3>
-        <p>Disponible</p>
-        <p>S/ 197</p>
-        <button>Añadir Carrito</button>
-      </div>
-    
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2022/11/g305-blanco-ligith.jpg" alt="MOUSE LOGITECH G305 LIGHTSPEED WIRELESS WHITE">
-        <h3>MOUSE LOGITECH G305 LIGHTSPEED WIRELESS WHITE</h3>
-        <p>Disponible</p>
-        <p>S/ 152</p>
-        <button>Añadir Carrito</button>
-      </div>
-    
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2023/04/m190.jpg" alt="MOUSE LOGITECH M190 WIRELESS FULL-SIZE BLUE">
-        <h3>MOUSE LOGITECH M190 WIRELESS FULL-SIZE BLUE</h3>
-        <p>Disponible</p>
-        <p>S/ 45</p>
-        <button>Añadir Carrito</button>
-      </div>
-    
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2023/07/203.jpg" alt="MOUSE LOGITECH G203 LIGHTSYNC OPTICAL 8000 DPI RGB">
-        <h3>MOUSE LOGITECH G203 LIGHTSYNC OPTICAL 8000 DPI RGB</h3>
-        <p>Disponible</p>
-        <p>S/ 117</p>
-        <button>Añadir Carrito</button>
-      </div>
-    
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2023/09/mous.jpg" alt="MOUSE LOGITECH M110 SILENT OPTICO USB BLACK">
-        <h3>MOUSE LOGITECH M110 SILENT OPTICO USB BLACK</h3>
-        <p>Disponible</p>
-        <p>S/ 26</p>
-        <button>Añadir Carrito</button>
-      </div>
-    
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2023/10/mouse.jpg" alt="MOUSE GAMER REDRAGON STORM PRO M808-KS Wireless, BLACK">
-        <h3>MOUSE GAMER REDRAGON STORM PRO M808-KS Wireless, BLACK</h3>
-        <p>Disponible</p>
-        <p>S/ 168</p>
-        <button>Añadir Carrito</button>
+    <main class="main-content">
+      <div class="container">
+        <!-- Page Header -->
+        <div class="section-header animate__animated animate__fadeInUp">
+          <div class="section-title">
+          <h1>Accesorios Tecnológicos</h1>
+          <p>Complementa tu setup con los mejores accesorios gaming y de oficina</p>
+        </div>
       </div>
 
-    </div>
+      <section class="product-grid">
+        <div th:each="producto : ${productos}" class="product-card animate-on-scroll">
+          <img th:src="${producto.foto}" th:alt="${producto.producto}" loading="lazy">
+          <div class="product-info">
+            <h3 th:text="${producto.producto}">Nombre del Producto</h3>
+            <div class="product-specs">
+              <i class="fas fa-plug me-2"></i>Accesorio de alta calidad<br>
+              <i class="fas fa-cog me-2"></i>Tecnología avanzada<br>
+              <i class="fas fa-star me-2"></i>Rendimiento superior<br>
+              <i class="fas fa-shield-alt me-2"></i>Garantía incluida
+            </div>
+            <div class="product-price">
+              S/ <span th:text="${#numbers.formatDecimal(producto.precio, 1, 2)}">0.00</span>
+            </div>
+            <button class="btn btn-primary btn-full">
+              <i class="fas fa-shopping-cart me-2"></i>
+              Agregar al carrito
+            </button>
+          </div>
+        </div>
+        
+        <!-- Mensaje si no hay productos -->
+        <div th:if="${#lists.isEmpty(productos)}" class="empty-state">
+          <div class="empty-icon">
+            <i class="fas fa-plug"></i>
+          </div>
+          <h3>No hay accesorios disponibles</h3>
+          <p>Estamos trabajando para traerte los mejores productos.</p>
+        </div>
+      </section>
 
-    <h1>TECLADO</h1>
+      <section class="explo aviso">
+        <div class="feature">
+          <img src="img/ensamblado.png" alt="Icono Calidad" />
+          <h3>Calidad garantizada</h3>
+          <p>
+            Todos nuestros accesorios son de marcas reconocidas y pasan controles de calidad rigurosos.
+          </p>
+        </div>
 
-    <div class="contenido">
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2022/12/LOGITECH-G213-PRODIGY-RGB-300x300.jpg" alt="TECLADO LOGITECH G213 PRODIGY RGB GAMING">
-        <h3>TECLADO LOGITECH G213 PRODIGY RGB GAMING</h3>
-        <p>Disponible</p>
-        <p>S/ 209</p>
-        <button>Añadir Carrito</button>
+        <div class="feature">
+          <img src="img/garantia.png" alt="Icono Garantía" />
+          <h3>Garantía oficial</h3>
+          <p>
+            Respaldamos cada producto con garantía oficial del fabricante y soporte técnico especializado.
+          </p>
+        </div>
+
+        <div class="feature">
+          <img src="img/satisfaccion.png" alt="Icono Compatibilidad" />
+          <h3>Compatibilidad total</h3>
+          <p>
+            Te asesoramos para encontrar los accesorios perfectos que sean compatibles con tu setup.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!--PARA EL FOOTER: Derechos Copy -->
+    <footer class="bg-dark text-white text-center py-4">
+      <h6>© 2025 Tienda FourTech. Todos los derechos reservados.</h6>
+      <div class="redes">
+        <div class="social"><i class="fa-brands fa-facebook"></i></div>
+        <div class="social"><i class="fa-brands fa-instagram"></i></div>
+        <div class="social"><i class="fa-brands fa-tiktok"></i></div>
       </div>
+    </footer>
 
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2023/06/teclado-300x300.jpg" alt="TECLADO LOGITECH K120 USB SP BLACK">
-        <h3>TECLADO LOGITECH K120 USB SP BLACK</h3>
-        <p>Disponible</p>
-        <p>S/ 36</p>
-        <button>Añadir Carrito</button>
-      </div>
-
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2023/10/k552-rgb-300x300.jpg" alt="TECLADO REDRAGON K552-RGB KUMARA RED SWITCH, USB BLACK">
-        <h3>TECLADO REDRAGON K552-RGB KUMARA RED SWITCH, USB BLACK</h3>
-        <p>Disponible</p>
-        <p>S/ 185</p>
-        <button>Añadir Carrito</button>
-      </div>
-
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2023/10/k552-white-300x300.jpg" alt="TECLADO REDRAGON K552W-RGB KUMARA WHITE, RED SWITCH">
-        <h3>TECLADO REDRAGON K552W-RGB KUMARA WHITE, RED SWITCH</h3>
-        <p>Disponible</p>
-        <p>S/ 190</p>
-        <button>Añadir Carrito</button>
-      </div>
-
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2023/10/13-300x300.jpg" alt="MOUSEPAD REDRAGON P003 SUZAKU (80cmx30cmx3mm)">
-        <h3>MOUSEPAD REDRAGON P003 SUZAKU (80cmx30cmx3mm)</h3>
-        <p>Disponible</p>
-        <p>S/ 50</p>
-        <button>Añadir Carrito</button>
-      </div>
-
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2023/10/tedc-300x300.jpg" alt="TECLADO REDRAGON SHIVA SEMI-MECANICO K512RGB-SP BLACK / REPOSAMUÑECA">
-        <h3>TECLADO REDRAGON SHIVA SEMI-MECANICO K512RGB-SP BLACK / REPOSAMUÑECA</h3>
-        <p>Disponible</p>
-        <p>S/ 131</p>
-        <button>Añadir Carrito</button>
-      </div>
-
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2023/10/TE-300x300.jpg" alt="TECLADO REDRAGON SHIVA SEMI-MECANICO K512W-RGB-SP WHITE / REPOSAMUÑECA">
-        <h3>TECLADO REDRAGON SHIVA SEMI-MECANICO K512W-RGB-SP WHITE / REPOSAMUÑECA</h3>
-        <p>Disponible</p>
-        <p>S/ 133</p>
-        <button>Añadir Carrito</button>
-      </div>
-    </div>
-
-    <h1>AUDIFONOS</h1>
-
-    <div class="contenido">
-
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2022/11/audifono-ryzer-300x300.jpg" alt="AUDIFONO C/MICROFONO RAZER BLACKSHARK V2 X MULTIPLAFORMA">
-        <h3>AUDIFONO C/MICROFONO RAZER BLACKSHARK V2</h3>
-        <p>Disponible</p>
-        <p>S/ 137</p>
-        <button>Añadir Carrito</button>
-      </div>
-
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2022/12/audio-G435-LIGHTSPEED-300x300.jpg" alt="AUDIFONO C/MICROF. LOGITECH G435 LIGHTSPEED / BLUETOOTH BLACK">
-        <h3>AUDIFONO C/MICROF. LOGITECH G435 LIGHTSPEED </h3>
-        <p>Disponible</p>
-        <p>S/ 263</p>
-        <button>Añadir Carrito</button>
-      </div>
-
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2023/04/audifono-g335-300x300.jpg" alt="AUDIFONO C/MICROF. LOGITECH G335 BLACK">
-        <h3>AUDIFONO C/MICROF. LOGITECH G335 BLACK</h3>
-        <p>Disponible</p>
-        <p>S/ 225</p>
-        <button>Añadir Carrito</button>
-      </div>
-
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2023/12/AU-300x300.jpg" alt="AUDIFONO REDRAGON ZEUS BLACK X RGB H510-WL Wireless">
-        <h3>AUDIFONO REDRAGON ZEUS BLACK X RGB H510-WL Wireless</h3>
-        <p>Disponible</p>
-        <p>S/ 259</p>
-        <button>Añadir Carrito</button>
-      </div>
-
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2023/12/audi-300x300.jpg" alt="AUDIFONO REDRAGON ZEUS X RGB H510W-RGB WHITE">
-        <h3>AUDIFONO REDRAGON ZEUS X RGB H510W-RGB WHITE</h3>
-        <p>Disponible</p>
-        <p>S/ 240</p>
-        <button>Añadir Carrito</button>
-      </div>
-
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2024/02/AUDIFONO-CON-MICROFONO-LOGITECH-G435-BT-LIGHTSPEED-WHITE-300x300.png" alt="AUDIFONO C/MICROF. LOGITECH G435 LIGHTSPEED BLUETOOTH WHITE">
-        <h3>AUDIFONO C/MICROF. LOGITECH G435 LIGHTSPEED</h3>
-        <p>Disponible</p>
-        <p>S/ 264</p>
-        <button>Añadir Carrito</button>
-      </div>
-
-      <div class="producto">
-        <img src="https://www.rayotec.pe/wp-content/uploads/2024/05/audifono-con-microfono-genius-hs-04s-p-notebook-noise-cancelling-blue-pn-31710156101-300x300.png" alt="AUDIFONO C/MICROFONO GENIUS HS-04S P/NOTEBOOK NOISE CANCELLING BLUE">
-        <h3>AUDIFONO C/MICROFONO GENIUS HS-04S P</h3>
-        <p>Disponible</p>
-        <p>S/ 29</p>
-        <button>Añadir Carrito</button>
-      </div>
-
-    </div>
-
-  </main>
-
-  <footer class="footer">
-
-    <div class="feature">
-      <img src="img/ensamblado.png" alt="Icono Ensamblado">
-      <h3>Ensamblado por expertos</h3>
-      <p>Todos los equipos son ensamblados y probados para garantizar un buen rendimiento.</p>
-    </div>
-
-    <div class="feature">
-      <img src="img/garantia.png" alt="Icono Garantía">
-      <h3>12 meses de garantía</h3>
-      <p>Todos los componentes tienen una garantía individual por fallas de fábrica.</p>
-    </div>
-
-    <div class="feature">
-      <img src="img/satisfaccion.png" alt="Icono Satisfacción">
-      <h3>Satisfacción</h3>
-      <p>Se eligió cuidadosamente cada componente para garantizar el máximo rendimiento.</p>
-    </div>
-  </footer>
-
-  <!-- Para algunas funciones -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <!-- Íconos -->
-  <script src="https://kit.fontawesome.com/1da5200486.js" crossorigin="anonymous"></script>
-  <script
+    <!-- Para enlazar el script de nuestro directorio -->
+    <script src="js/script.js"></script>
+    <!-- Íconos -->
+    <script
+      src="https://kit.fontawesome.com/1da5200486.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Para algunas funciones -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
       crossorigin="anonymous"
     ></script>
+    <!-- Para mensajes de alerta -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <!-- Script para ir arriba -->
-  <script>
-    $(document).ready(function(){
-      $('.ir-arriba').click(function(){
-          $('body, html').animate({
-              scrollTop: '0px'
-          }, 300);
-      });
-      $(window).scroll(function(){
-          if( $(this).scrollTop() > 0 ){
-              $('.ir-arriba').slideDown(300);
+    <!-- Script para ir arriba -->
+    <script>
+      $(document).ready(function () {
+        $(".ir-arriba").click(function () {
+          $("body, html").animate(
+            {
+              scrollTop: "0px",
+            },
+            300
+          );
+        });
+        $(window).scroll(function () {
+          if ($(this).scrollTop() > 0) {
+            $(".ir-arriba").slideDown(300);
           } else {
-              $('.ir-arriba').slideUp(300);
+            $(".ir-arriba").slideUp(300);
           }
+        });
       });
-    });
-  </script>
-
-</body>
-</html> 
+    </script>
+  </body>
+</html>

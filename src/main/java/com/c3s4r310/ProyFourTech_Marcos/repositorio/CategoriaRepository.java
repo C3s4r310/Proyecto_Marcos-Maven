@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.c3s4r310.ProyFourTech_Marcos.modelo.CategoriaProductos;
 
 @Repository
-public interface CategoriaRepo extends JpaRepository<CategoriaProductos, Long>{
+public interface CategoriaRepository extends JpaRepository<CategoriaProductos, Long>{
     //List<Productos> findByProductos() 
 }

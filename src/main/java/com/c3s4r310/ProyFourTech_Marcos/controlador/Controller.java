@@ -18,13 +18,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.c3s4r310.ProyFourTech_Marcos.Services.ProductosServices;
 import com.c3s4r310.ProyFourTech_Marcos.modelo.Productos;
 import com.c3s4r310.ProyFourTech_Marcos.modelo.Usuario;
-import com.c3s4r310.ProyFourTech_Marcos.repositorio.Repository; // Importa tu repositorio
+import com.c3s4r310.ProyFourTech_Marcos.repositorio.UsuarioRepository;
 
 @org.springframework.stereotype.Controller
 public class Controller {
 
     @Autowired
-    private Repository usuarioRepository; // Renombrado a usuarioRepository para claridad
+    private UsuarioRepository usuarioRepository;
 
     @Autowired
     private ProductosServices services_pro;
@@ -37,12 +37,12 @@ public class Controller {
 
     @GetMapping("/")
     public String mostrarPaginaPrincipal() {
-        return "index.html"; // Nombre de la plantilla
+        return "index"; // Nombre de la plantilla
     }
 
     @GetMapping("/computadoras")
     public String listarPcs(Model model) {
-        Long idCategoria = 1L;
+        Integer idCategoria = 1;
         List<Productos> productos = services_pro.listarPorCategoria(idCategoria);
         model.addAttribute("productos", productos);
         return "computadoras";
@@ -50,14 +50,17 @@ public class Controller {
 
     @GetMapping("/laptops")
     public String listarLaptops(Model model) {
-        Long idCategoria = 2L;
+        Integer idCategoria = 2;
         List<Productos> productos = services_pro.listarPorCategoria(idCategoria);
         model.addAttribute("productos", productos);
         return "laptops";
     }
 
     @GetMapping("/accesorios")
-    public String listarAccesorios() {
+    public String listarAccesorios(Model model) {
+        Integer idCategoria = 3;
+        List<Productos> productos = services_pro.listarPorCategoria(idCategoria);
+        model.addAttribute("productos", productos);
         return "accesorios";
     }
 
@@ -67,25 +70,29 @@ public class Controller {
         return "registro";
     }
 
-    @GetMapping("/usuarios_registrados")
+    @GetMapping("/usuarios")
     public String mostrarUsuariosRegistrados(Model model) { // ¡Aquí el cambio! Necesitas Model
         // Obtiene todos los usuarios de la base de datos
         List<Usuario> usuarios = usuarioRepository.findAll();
         
         // Agrega la lista de usuarios al modelo para que Thymeleaf la use
-        model.addAttribute("usuarios", usuarios); 
-        
-        return "usuarios_registrados.html"; // Nombre de la plantilla
+        model.addAttribute("usuarios", usuarios);
+
+        return "usuarios"; // Nombre de la plantilla
     }
 
-    @PostMapping("/registrarUsuario")
+    @PostMapping("/registro")
     public String registrarUsuario(@ModelAttribute Usuario usuario, RedirectAttributes redirectAttributes) {
 
 <<<<<<< HEAD
 =======
         // Encriptar la contraseña antes de guardar
+<<<<<<< HEAD
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 >>>>>>> 3c9c43d (Consolidación: Recuperar versión con style.css + Spring Security + mejoras actuales)
+=======
+        usuario.setContra(passwordEncoder.encode(usuario.getContra()));
+>>>>>>> d6a3597 (Mejora de UX/UI e implementación de Spring Security con Usuarios registrados)
         usuarioRepository.save(usuario);
 
         // Enviar mensaje de éxito al redirigir
