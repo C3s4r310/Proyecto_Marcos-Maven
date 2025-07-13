@@ -1,22 +1,23 @@
 package com.c3s4r310.ProyFourTech_Marcos.controlador;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import com.c3s4r310.ProyFourTech_Marcos.Services.ProductosServices;
 import com.c3s4r310.ProyFourTech_Marcos.modelo.Productos;
 import com.c3s4r310.ProyFourTech_Marcos.modelo.Usuario;
 import com.c3s4r310.ProyFourTech_Marcos.repositorio.UsuarioRepository;
-import org.springframework.stereotype.Controller;
 
 @Controller
-public class Controller {
-
+public class ProductoController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
