@@ -1,9 +1,4 @@
-
-<<<<<<< HEAD
-package com.c3s4r310.ProyFourTech_Marcos.Controlador;
-=======
 package com.c3s4r310.ProyFourTech_Marcos.controlador;
->>>>>>> 3c9c43d (Consolidación: Recuperar versión con style.css + Spring Security + mejoras actuales)
 
 import java.util.List;
 
@@ -28,21 +23,21 @@ public class Controller {
 
     @Autowired
     private ProductosServices services_pro;
-<<<<<<< HEAD
-=======
 
     @Autowired
     private PasswordEncoder passwordEncoder;
->>>>>>> 3c9c43d (Consolidación: Recuperar versión con style.css + Spring Security + mejoras actuales)
 
     @GetMapping("/")
-    public String mostrarPaginaPrincipal() {
-        return "index"; // Nombre de la plantilla
+    public String inicio(Model model) {
+        Integer idCategoria = 1; // ID para computadoras
+        List<Productos> productos = services_pro.listarPorCategoria(idCategoria);
+        model.addAttribute("productos", productos);
+        return "index";
     }
 
     @GetMapping("/computadoras")
     public String listarPcs(Model model) {
-        Integer idCategoria = 1;
+        Integer idCategoria = 1; // ID para computadoras
         List<Productos> productos = services_pro.listarPorCategoria(idCategoria);
         model.addAttribute("productos", productos);
         return "computadoras";
@@ -50,7 +45,7 @@ public class Controller {
 
     @GetMapping("/laptops")
     public String listarLaptops(Model model) {
-        Integer idCategoria = 2;
+        Integer idCategoria = 2; // ID para laptops
         List<Productos> productos = services_pro.listarPorCategoria(idCategoria);
         model.addAttribute("productos", productos);
         return "laptops";
@@ -58,7 +53,7 @@ public class Controller {
 
     @GetMapping("/accesorios")
     public String listarAccesorios(Model model) {
-        Integer idCategoria = 3;
+        Integer idCategoria = 3; // ID para accesorios
         List<Productos> productos = services_pro.listarPorCategoria(idCategoria);
         model.addAttribute("productos", productos);
         return "accesorios";
@@ -71,42 +66,35 @@ public class Controller {
     }
 
     @GetMapping("/usuarios")
-    public String mostrarUsuariosRegistrados(Model model) { // ¡Aquí el cambio! Necesitas Model
-        // Obtiene todos los usuarios de la base de datos
+    public String mostrarUsuariosRegistrados(Model model) {
         List<Usuario> usuarios = usuarioRepository.findAll();
-        
-        // Agrega la lista de usuarios al modelo para que Thymeleaf la use
         model.addAttribute("usuarios", usuarios);
-
-        return "usuarios"; // Nombre de la plantilla
+        return "usuarios";
     }
 
     @PostMapping("/registro")
     public String registrarUsuario(@ModelAttribute Usuario usuario, RedirectAttributes redirectAttributes) {
-
-<<<<<<< HEAD
-=======
-        // Encriptar la contraseña antes de guardar
-<<<<<<< HEAD
-        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
->>>>>>> 3c9c43d (Consolidación: Recuperar versión con style.css + Spring Security + mejoras actuales)
-=======
-        usuario.setContra(passwordEncoder.encode(usuario.getContra()));
->>>>>>> d6a3597 (Mejora de UX/UI e implementación de Spring Security con Usuarios registrados)
-        usuarioRepository.save(usuario);
-
-        // Enviar mensaje de éxito al redirigir
-        redirectAttributes.addFlashAttribute("mensajeExito", "¡Usuario registrado correctamente!");
+        try {
+            // Encriptar la contraseña antes de guardar
+            usuario.setContra(passwordEncoder.encode(usuario.getContra()));
+            
+            // Guardar el usuario en la base de datos
+            usuarioRepository.save(usuario);
+            
+            // Mensaje de éxito
+            redirectAttributes.addFlashAttribute("mensaje", "Usuario registrado exitosamente");
+            return "redirect:/login"; // Redirigir al login después del registro exitoso
+            
+        } catch (Exception e) {
+            // Mensaje de error
+            redirectAttributes.addFlashAttribute("error", "Error al registrar usuario: " + e.getMessage());
+        }
 
         return "redirect:/registro"; // redirecciona después del registro
     }
 
-<<<<<<< HEAD
-=======
     @GetMapping("/login")
     public String mostrarLogin() {
         return "login";
     }
-
->>>>>>> 3c9c43d (Consolidación: Recuperar versión con style.css + Spring Security + mejoras actuales)
 }

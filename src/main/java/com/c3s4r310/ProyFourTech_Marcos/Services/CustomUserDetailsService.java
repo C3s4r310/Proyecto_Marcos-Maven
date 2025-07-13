@@ -29,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         
         return User.builder()
                 .username(nombreCompleto) // Mostrar nombre completo en lugar del email
-                .password(usuario.getContra()) // Usar getContra() en lugar de getPassword()
+                .password(usuario.getPassword()) // Usar getPassword() que es el método correcto
                 .authorities("USER")
                 .build();
     }
