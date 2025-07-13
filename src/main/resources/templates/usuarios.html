@@ -1,30 +1,48 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html
+  lang="es"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Computadoras - Tienda FourTech</title>
+    <title>Usuarios Registrados - Tienda FourTech</title>
     <link rel="icon" href="img/logo.jpeg" type="image/png" />
-    
-    <!-- Link de Bootstrap -->
+
+    <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
       crossorigin="anonymous"
     />
-    <!-- Animate.css para animaciones -->
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Animate.css -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css" />
   </head>
+
   <body>
     <span class="ir-arriba">
       <i class="fa-solid fa-arrow-up"></i>
     </span>
-    
+
+    <!-- Header -->
     <header
       class="d-flex p-2 text-center py-4 justify-content-around align-items-center"
     >
@@ -109,72 +127,129 @@
       </div>
     </nav>
 
+    <!-- Main Content -->
     <main class="main-content">
       <div class="container">
         <!-- Page Header -->
         <div class="section-header animate__animated animate__fadeInUp">
           <div class="section-title">
-          <h1>Computadoras de Escritorio</h1>
-          <p>PCs de alto rendimiento para gaming, trabajo y entretenimiento</p>
+            <h2>
+              <i class="fas fa-users"></i>
+              Usuarios Registrados
+            </h2>
+            <p>Lista completa de usuarios en nuestra plataforma</p>
+          </div>
         </div>
+
+        <!-- Content Section -->
+        <section class="content-section animate__animated animate__fadeInUp">
+          <div th:if="${#lists.isEmpty(usuarios)}" class="empty-state">
+            <div class="empty-icon">
+              <i class="fas fa-users-slash"></i>
+            </div>
+            <h3>No hay usuarios registrados</h3>
+            <p>Aún no hay usuarios registrados en la base de datos.</p>
+            <a href="/registro" class="btn btn-primary">
+              <i class="fas fa-user-plus"></i>
+              Crear primera cuenta
+            </a>
+          </div>
+
+          <div
+            th:unless="${#lists.isEmpty(usuarios)}"
+            class="users-table-container"
+          >
+            <div class="table-header">
+              <h3>
+                <i class="fas fa-table"></i>
+                Lista de Usuarios
+              </h3>
+              <div class="table-stats">
+                <span class="badge bg-primary">
+                  <i class="fas fa-users"></i>
+                  Total:
+                  <span th:text="${#lists.size(usuarios)}">0</span> usuarios
+                </span>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-modern">
+                <thead>
+                  <tr>
+                    <th>
+                      <i class="fas fa-hashtag"></i>
+                      ID
+                    </th>
+                    <th>
+                      <i class="fas fa-user"></i>
+                      Nombres
+                    </th>
+                    <th>
+                      <i class="fas fa-user"></i>
+                      Apellidos
+                    </th>
+                    <th>
+                      <i class="fas fa-envelope"></i>
+                      Email
+                    </th>
+                    <th>
+                      <i class="fas fa-phone"></i>
+                      Teléfono
+                    </th>
+                    <th>
+                      <i class="fas fa-map-marker-alt"></i>
+                      Dirección
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="usuario : ${usuarios}" class="table-row">
+                    <td>
+                      <span class="user-id" th:text="${usuario.id_usuario}"
+                        >1</span
+                      >
+                    </td>
+                    <td>
+                      <div class="user-name">
+                        <i class="fas fa-user text-primary"></i>
+                        <span th:text="${usuario.nombres}">Nombre</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="user-name">
+                        <span th:text="${usuario.apellidos}">Apellido</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="user-email">
+                        <i class="fas fa-envelope text-info"></i>
+                        <a
+                          th:href="'mailto:' + ${usuario.email}"
+                          th:text="${usuario.email}"
+                          >email@example.com</a
+                        >
+                      </div>
+                    </td>
+                    <td>
+                      <div class="user-phone">
+                        <i class="fas fa-phone text-success"></i>
+                        <span th:text="${usuario.telefono}">Teléfono</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="user-address">
+                        <i class="fas fa-map-marker-alt text-warning"></i>
+                        <span th:text="${usuario.direccion}">Dirección</span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
       </div>
-
-      <section class="product-grid">
-        <div th:each="producto : ${productos}" class="product-card animate-on-scroll">
-          <img th:src="${producto.foto}" th:alt="${producto.producto}" loading="lazy">
-          <div class="product-info">
-            <h3 th:text="${producto.producto}">Nombre del Producto</h3>
-            <div class="product-specs">
-              <i class="fas fa-desktop me-2"></i>Computadora de alto rendimiento<br>
-              <i class="fas fa-microchip me-2"></i>Tecnología de última generación<br>
-              <i class="fas fa-memory me-2"></i>Componentes premium<br>
-              <i class="fas fa-shield-alt me-2"></i>Garantía incluida
-            </div>
-            <div class="product-price">
-              S/ <span th:text="${#numbers.formatDecimal(producto.precio, 1, 2)}">0.00</span>
-            </div>
-            <button class="btn btn-primary btn-full">
-              <i class="fas fa-shopping-cart me-2"></i>
-              Agregar al carrito
-            </button>
-          </div>
-        </div>
-        
-        <!-- Mensaje si no hay productos -->
-        <div th:if="${#lists.isEmpty(productos)}" class="empty-state">
-          <div class="empty-icon">
-            <i class="fas fa-desktop"></i>
-          </div>
-          <h3>No hay computadoras disponibles</h3>
-          <p>Estamos trabajando para traerte los mejores productos.</p>
-        </div>
-      </section>
-
-      <section class="explo aviso">
-        <div class="feature">
-          <img src="img/ensamblado.png" alt="Icono Ensamblado" />
-          <h3>Ensamblado por expertos</h3>
-          <p>
-            Cada PC es ensamblada y probada exhaustivamente por nuestros técnicos certificados.
-          </p>
-        </div>
-
-        <div class="feature">
-          <img src="img/garantia.png" alt="Icono Garantía" />
-          <h3>Garantía de componentes</h3>
-          <p>
-            Garantía individual por cada componente, respaldada por los fabricantes oficiales.
-          </p>
-        </div>
-
-        <div class="feature">
-          <img src="img/satisfaccion.png" alt="Icono Satisfacción" />
-          <h3>Configuración personalizada</h3>
-          <p>
-            Adaptamos cada PC según tus necesidades específicas y presupuesto disponible.
-          </p>
-        </div>
-      </section>
     </main>
 
     <!--PARA EL FOOTER: Derechos Copy -->

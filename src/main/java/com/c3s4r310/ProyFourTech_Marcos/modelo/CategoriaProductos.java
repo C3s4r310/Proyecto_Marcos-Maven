@@ -2,25 +2,30 @@ package com.c3s4r310.ProyFourTech_Marcos.modelo;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @Entity
+@Table(name = "categorias")
 public class CategoriaProductos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id_categoria")
+    private Integer idCategoria;
 
-    private String nombrecategoria;
+    @Column(name = "categoria", nullable = false, length = 50)
+    private String categoria;
 
-    @OneToMany
+    @OneToMany(mappedBy = "categoria")
     private List<Productos> productos;
 }
